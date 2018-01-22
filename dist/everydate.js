@@ -60,72 +60,15 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_date_fns_add_days__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_date_fns_add_days___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_date_fns_add_days__);
 
-
-class EveryDate {
-  constructor(start) {
-    this.start = start;
-  }
-
-  next(times) {
-    const res = [];
-    for (let i = 0; i < times; i++) {
-      res.push(__WEBPACK_IMPORTED_MODULE_0_date_fns_add_days___default()(this.start, i));
-    }
-    return res;
-  }
-}
-
-const a = new EveryDate(new Date());
-console.log(a.next(10));
-
-/* harmony default export */ __webpack_exports__["default"] = (EveryDate);
-
-/***/ }),
-/* 1 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var parse = __webpack_require__(2);
-
-/**
- * @category Day Helpers
- * @summary Add the specified number of days to the given date.
- *
- * @description
- * Add the specified number of days to the given date.
- *
- * @param {Date|String|Number} date - the date to be changed
- * @param {Number} amount - the amount of days to be added
- * @returns {Date} the new date with the days added
- *
- * @example
- * // Add 10 days to 1 September 2014:
- * var result = addDays(new Date(2014, 8, 1), 10)
- * //=> Thu Sep 11 2014 00:00:00
- */
-function addDays(dirtyDate, dirtyAmount) {
-  var date = parse(dirtyDate);
-  var amount = Number(dirtyAmount);
-  date.setDate(date.getDate() + amount);
-  return date;
-}
-
-module.exports = addDays;
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
 
 var isDate = __webpack_require__(3);
 
@@ -444,8 +387,121 @@ function dayOfISOYear(isoYear, week, day) {
 module.exports = parse;
 
 /***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var parse = __webpack_require__(0);
+
+/**
+ * @category Day Helpers
+ * @summary Add the specified number of days to the given date.
+ *
+ * @description
+ * Add the specified number of days to the given date.
+ *
+ * @param {Date|String|Number} date - the date to be changed
+ * @param {Number} amount - the amount of days to be added
+ * @returns {Date} the new date with the days added
+ *
+ * @example
+ * // Add 10 days to 1 September 2014:
+ * var result = addDays(new Date(2014, 8, 1), 10)
+ * //=> Thu Sep 11 2014 00:00:00
+ */
+function addDays(dirtyDate, dirtyAmount) {
+  var date = parse(dirtyDate);
+  var amount = Number(dirtyAmount);
+  date.setDate(date.getDate() + amount);
+  return date;
+}
+
+module.exports = addDays;
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _add_days = __webpack_require__(1);
+
+var _add_days2 = _interopRequireDefault(_add_days);
+
+var _add_weeks = __webpack_require__(4);
+
+var _add_weeks2 = _interopRequireDefault(_add_weeks);
+
+var _compare_asc = __webpack_require__(5);
+
+var _compare_asc2 = _interopRequireDefault(_compare_asc);
+
+var _set_hours = __webpack_require__(6);
+
+var _set_hours2 = _interopRequireDefault(_set_hours);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var EveryDate = function () {
+  function EveryDate(_ref) {
+    var start = _ref.start,
+        units = _ref.units,
+        rule = _ref.rule;
+
+    _classCallCheck(this, EveryDate);
+
+    this.start = start;
+    this.units = units;
+    this.rule = rule;
+  }
+
+  _createClass(EveryDate, [{
+    key: 'next',
+    value: function next(times) {
+      var res = [];
+      var i = 1;
+      while (res.length < times) {
+        for (var j = 0; j < this.units.length; j++) {
+          switch (this.rule) {
+            case 'days':
+              res.push((0, _add_days2.default)(this.start, i * this.units[j]));
+              break;
+            case 'weeks':
+              res.push((0, _add_weeks2.default)(this.start, i * this.units[j]));
+              break;
+          }
+        }
+        i++;
+      }
+      if (this.units.length > 1) {
+        res.sort(_compare_asc2.default);
+      }
+      return res.slice(0, times);
+    }
+  }]);
+
+  return EveryDate;
+}();
+
+exports.default = EveryDate;
+
+/***/ }),
 /* 3 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
 
 /**
  * @category Common Helpers
@@ -467,6 +523,132 @@ function isDate(argument) {
 }
 
 module.exports = isDate;
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var addDays = __webpack_require__(1);
+
+/**
+ * @category Week Helpers
+ * @summary Add the specified number of weeks to the given date.
+ *
+ * @description
+ * Add the specified number of week to the given date.
+ *
+ * @param {Date|String|Number} date - the date to be changed
+ * @param {Number} amount - the amount of weeks to be added
+ * @returns {Date} the new date with the weeks added
+ *
+ * @example
+ * // Add 4 weeks to 1 September 2014:
+ * var result = addWeeks(new Date(2014, 8, 1), 4)
+ * //=> Mon Sep 29 2014 00:00:00
+ */
+function addWeeks(dirtyDate, dirtyAmount) {
+  var amount = Number(dirtyAmount);
+  var days = amount * 7;
+  return addDays(dirtyDate, days);
+}
+
+module.exports = addWeeks;
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var parse = __webpack_require__(0);
+
+/**
+ * @category Common Helpers
+ * @summary Compare the two dates and return -1, 0 or 1.
+ *
+ * @description
+ * Compare the two dates and return 1 if the first date is after the second,
+ * -1 if the first date is before the second or 0 if dates are equal.
+ *
+ * @param {Date|String|Number} dateLeft - the first date to compare
+ * @param {Date|String|Number} dateRight - the second date to compare
+ * @returns {Number} the result of the comparison
+ *
+ * @example
+ * // Compare 11 February 1987 and 10 July 1989:
+ * var result = compareAsc(
+ *   new Date(1987, 1, 11),
+ *   new Date(1989, 6, 10)
+ * )
+ * //=> -1
+ *
+ * @example
+ * // Sort the array of dates:
+ * var result = [
+ *   new Date(1995, 6, 2),
+ *   new Date(1987, 1, 11),
+ *   new Date(1989, 6, 10)
+ * ].sort(compareAsc)
+ * //=> [
+ * //   Wed Feb 11 1987 00:00:00,
+ * //   Mon Jul 10 1989 00:00:00,
+ * //   Sun Jul 02 1995 00:00:00
+ * // ]
+ */
+function compareAsc(dirtyDateLeft, dirtyDateRight) {
+  var dateLeft = parse(dirtyDateLeft);
+  var timeLeft = dateLeft.getTime();
+  var dateRight = parse(dirtyDateRight);
+  var timeRight = dateRight.getTime();
+
+  if (timeLeft < timeRight) {
+    return -1;
+  } else if (timeLeft > timeRight) {
+    return 1;
+  } else {
+    return 0;
+  }
+}
+
+module.exports = compareAsc;
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var parse = __webpack_require__(0);
+
+/**
+ * @category Hour Helpers
+ * @summary Set the hours to the given date.
+ *
+ * @description
+ * Set the hours to the given date.
+ *
+ * @param {Date|String|Number} date - the date to be changed
+ * @param {Number} hours - the hours of the new date
+ * @returns {Date} the new date with the hours setted
+ *
+ * @example
+ * // Set 4 hours to 1 September 2014 11:30:00:
+ * var result = setHours(new Date(2014, 8, 1, 11, 30), 4)
+ * //=> Mon Sep 01 2014 04:30:00
+ */
+function setHours(dirtyDate, dirtyHours) {
+  var date = parse(dirtyDate);
+  var hours = Number(dirtyHours);
+  date.setHours(hours);
+  return date;
+}
+
+module.exports = setHours;
 
 /***/ })
 /******/ ]);
