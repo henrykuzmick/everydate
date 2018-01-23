@@ -151,16 +151,6 @@ class EveryDate {
           break;
       }
     }
-
-    // let testDay = this.start;
-    // switch(this.measure) {
-    //   case 'days': {
-    //     while(isBefore(testDay, testDate)) {
-    //       for (let j = 0; j < this.units.length; j++) {
-    //       }
-    //     }
-    //   }
-    // }
     return false;
   }
 }
