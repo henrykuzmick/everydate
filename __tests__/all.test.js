@@ -1,8 +1,8 @@
-import Everydate from '../src';
+import everydate from '../src';
 
 describe('getting all days', () => {
   it('should get all days', () => {
-    const recur = new Everydate({
+    const recur = everydate({
       start: '2018-02-10',
       end: '2018-02-17',
       units: [1],
@@ -22,7 +22,7 @@ describe('getting all days', () => {
   });
 
   it('should get all days with multiple units', () => {
-    const recur = new Everydate({
+    const recur = everydate({
       start: '2018-02-10',
       end: '2018-02-17',
       units: [2, 3],
@@ -41,7 +41,7 @@ describe('getting all days', () => {
 
 describe('getting all weeks', () => {
   it('should get all weeks', () => {
-    const recur = new Everydate({
+    const recur = everydate({
       start: '2018-03-03',
       end: '2018-04-03',
       units: [1],
@@ -58,7 +58,7 @@ describe('getting all weeks', () => {
   });
 
   it('should get all weeks with multiple units', () => {
-    const recur = new Everydate({
+    const recur = everydate({
       start: '2018-03-03',
       end: '2018-05-03',
       units: [2, 3],
@@ -78,7 +78,7 @@ describe('getting all weeks', () => {
 
 describe('getting all months', () => {
   it('should get all months', () => {
-    const recur = new Everydate({
+    const recur = everydate({
       start: '2018-03-03',
       end: '2018-08-03',
       units: [1],
@@ -98,7 +98,7 @@ describe('getting all months', () => {
 
 describe('getting all years', () => {
   it('should get all years', () => {
-    const recur = new Everydate({
+    const recur = everydate({
       start: '2018-03-03',
       end: '2020-08-03',
       units: [1],
@@ -111,7 +111,7 @@ describe('getting all years', () => {
 
 describe('getting all daysOfWeek', () => {
   it('should get all days of week when start === unit', () => {
-    const recur = new Everydate({
+    const recur = everydate({
       start: '2018-02-10',
       end: '2018-03-11',
       units: [6],
@@ -128,7 +128,7 @@ describe('getting all daysOfWeek', () => {
   });
 
   it('should get all days of week when start < unit', () => {
-    const recur = new Everydate({
+    const recur = everydate({
       start: '2018-02-07',
       end: '2018-03-11',
       units: [6],
@@ -145,7 +145,7 @@ describe('getting all daysOfWeek', () => {
   });
 
   it('should get all days of week when start > unit', () => {
-    const recur = new Everydate({
+    const recur = everydate({
       start: '2018-02-11',
       end: '2018-03-11',
       units: [6],
@@ -158,7 +158,7 @@ describe('getting all daysOfWeek', () => {
 
 describe('getting all daysOfMonth', () => {
   it('should get all days of month when start === unit', () => {
-    const recur = new Everydate({
+    const recur = everydate({
       start: '2018-02-10',
       end: '2018-07-11',
       units: [10],
@@ -176,7 +176,7 @@ describe('getting all daysOfMonth', () => {
   });
 
   it('should get all days of week when start < unit', () => {
-    const recur = new Everydate({
+    const recur = everydate({
       start: '2018-02-07',
       end: '2018-07-11',
       units: [10],
@@ -194,7 +194,7 @@ describe('getting all daysOfMonth', () => {
   });
 
   it('should get all days of week when start > unit', () => {
-    const recur = new Everydate({
+    const recur = everydate({
       start: '2018-02-11',
       end: '2018-07-11',
       units: [10],

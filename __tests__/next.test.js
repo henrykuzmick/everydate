@@ -1,8 +1,8 @@
-import Everydate from '../src';
+import everydate from '../src';
 
 describe('getting next days', () => {
   it('should parse next with days', () => {
-    const recur = new Everydate({
+    const recur = everydate({
       start: '2018-02-10',
       units: [1],
       measure: 'days'
@@ -18,7 +18,7 @@ describe('getting next days', () => {
   });
 
   it('should parse next with larger days', () => {
-    const recur = new Everydate({
+    const recur = everydate({
       start: '2018-02-10',
       units: [3],
       measure: 'days'
@@ -34,7 +34,7 @@ describe('getting next days', () => {
   });
 
   it('should parse multiple days', () => {
-    const recur = new Everydate({
+    const recur = everydate({
       start: '2018-02-10',
       units: [3, 5],
       measure: 'days'
@@ -52,7 +52,7 @@ describe('getting next days', () => {
 
 describe('getting next weeks', () => {
   it('should get next weeks', () => {
-    const recur = new Everydate({
+    const recur = everydate({
       start: '2018-09-30',
       units: [1],
       measure: 'weeks'
@@ -68,7 +68,7 @@ describe('getting next weeks', () => {
   });
 
   it('should get multiple next weeks', () => {
-    const recur = new Everydate({
+    const recur = everydate({
       start: '2018-02-10',
       units: [3, 5],
       measure: 'weeks'
@@ -86,7 +86,7 @@ describe('getting next weeks', () => {
 
 describe('getting next months', () => {
   it('should get next months', () => {
-    const recur = new Everydate({
+    const recur = everydate({
       start: '2018-02-10',
       units: [2],
       measure: 'months'
@@ -103,7 +103,7 @@ describe('getting next months', () => {
   });
 
   it('should get multiple next months', () => {
-    const recur = new Everydate({
+    const recur = everydate({
       start: '2018-02-10',
       units: [2, 5],
       measure: 'months'
@@ -120,7 +120,7 @@ describe('getting next months', () => {
   });
 
   it('should give last day of month when date is too large', () => {
-    const recur = new Everydate({
+    const recur = everydate({
       start: '2018-01-31',
       units: [1],
       measure: 'months'
@@ -139,7 +139,7 @@ describe('getting next months', () => {
 
 describe('getting next years', () => {
   it('should get next years', () => {
-    const recur = new Everydate({
+    const recur = everydate({
       start: '2018-02-10',
       units: [1],
       measure: 'years'
@@ -156,7 +156,7 @@ describe('getting next years', () => {
   });
 
   it('should get multiple years', () => {
-    const recur = new Everydate({
+    const recur = everydate({
       start: '2018-02-10',
       units: [2, 5],
       measure: 'years'
@@ -175,7 +175,7 @@ describe('getting next years', () => {
 
 describe('getting next daysOfWeek', () => {
   it('should get next daysOfWeek when start is > weekday', () => {
-    const recur = new Everydate({
+    const recur = everydate({
       start: '2018-02-10',
       units: [2],
       measure: 'daysOfWeek'
@@ -190,7 +190,7 @@ describe('getting next daysOfWeek', () => {
     expect(recur.next(5)).toEqual(expected);
   });
   it('should get next daysOfWeek when start is === weekday', () => {
-    const recur = new Everydate({
+    const recur = everydate({
       start: '2018-02-06',
       units: [2],
       measure: 'daysOfWeek'
@@ -205,7 +205,7 @@ describe('getting next daysOfWeek', () => {
     expect(recur.next(5)).toEqual(expected);
   });
   it('should get next daysOfWeek when start is < weekday', () => {
-    const recur = new Everydate({
+    const recur = everydate({
       start: '2018-02-06',
       units: [6],
       measure: 'daysOfWeek'
@@ -220,7 +220,7 @@ describe('getting next daysOfWeek', () => {
     expect(recur.next(5)).toEqual(expected);
   });
   it('should get multiple next daysOfWeek', () => {
-    const recur = new Everydate({
+    const recur = everydate({
       start: '2018-02-06',
       units: [3, 6],
       measure: 'daysOfWeek'
@@ -238,7 +238,7 @@ describe('getting next daysOfWeek', () => {
 
 describe('getting next days of month', () => {
   it('should get next daysOfMonth when start < unit', () => {
-    const recur = new Everydate({
+    const recur = everydate({
       start: '2018-02-10',
       units: [15],
       measure: 'daysOfMonth'
@@ -254,7 +254,7 @@ describe('getting next days of month', () => {
   });
 
   it('should get next daysOfMonth when start === unit', () => {
-    const recur = new Everydate({
+    const recur = everydate({
       start: '2018-02-15',
       units: [15],
       measure: 'daysOfMonth'
@@ -270,7 +270,7 @@ describe('getting next days of month', () => {
   });
 
   it('should get next daysOfMonth when start > unit', () => {
-    const recur = new Everydate({
+    const recur = everydate({
       start: '2018-02-18',
       units: [15],
       measure: 'daysOfMonth'

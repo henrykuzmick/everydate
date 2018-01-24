@@ -31,19 +31,12 @@ type Props = {
   measure: MeasureType
 };
 
-class EveryDate {
-  start: Date;
-  end: Date | null;
-  units: Array<number>;
-  measure: MeasureType;
+const everydate = ({ start, end, units, measure }: Props) => ({
 
-  constructor({ start, end, units, measure }: Props) {
-    // TODO: remove same from array
-    this.start = new Date(start);
-    this.end = end ? new Date(end) : null;
-    this.units = units;
-    this.measure = measure;
-  }
+  start: new Date(start),
+  end: end ? new Date(end) : null,
+  units: units,
+  measure: measure,
 
   all() {
     const res = [];
@@ -130,7 +123,7 @@ class EveryDate {
     }
 
     return Array.from(new Set(res.map(date => format(date, 'YYYY-MM-DD'))));
-  }
+  },
 
   next(times: number, options: Object = {}) {
     const res = [];
@@ -186,7 +179,7 @@ class EveryDate {
     return Array.from(
       new Set(res.map(date => format(date, 'YYYY-MM-DD')))
     ).slice(0, times);
-  }
+  },
 
   match(date: string) {
     const testDate = new Date(date);
@@ -241,6 +234,6 @@ class EveryDate {
     }
     return false;
   }
-}
+});
 
-export default EveryDate;
+export default everydate;
