@@ -118,6 +118,23 @@ describe('getting next months', () => {
     ];
     expect(recur.next(6)).toEqual(expected);
   });
+
+  it('should give last day of month when date is too large', () => {
+    const recur = new Everydate({
+      start: '2018-01-31',
+      units: [1],
+      measure: 'months'
+    });
+    const expected = [
+      '2018-01-31',
+      '2018-02-28',
+      '2018-03-31',
+      '2018-04-30',
+      '2018-05-31',
+      '2018-06-30'
+    ];
+    expect(recur.next(6)).toEqual(expected);
+  })
 });
 
 describe('getting next years', () => {
