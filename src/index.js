@@ -11,7 +11,6 @@ import getDay from 'date-fns/get_day';
 import getDate from 'date-fns/get_date';
 import getMonth from 'date-fns/get_month';
 import isBefore from 'date-fns/is_before';
-import isAfter from 'date-fns/is_after';
 import differenceInDays from 'date-fns/difference_in_days';
 import differenceInMonths from 'date-fns/difference_in_months';
 import differenceInYears from 'date-fns/difference_in_years';
@@ -27,24 +26,113 @@ type MeasureType =
 
 type Props = {
   start: string,
+  end: ?string,
   units: Array<number>,
   measure: MeasureType
 };
 
 class EveryDate {
   start: Date;
+  end: Date | null;
   units: Array<number>;
   measure: MeasureType;
 
-  constructor({ start, units, measure }: Props) {
+  constructor({ start, end, units, measure }: Props) {
     // TODO: remove same from array
     this.start = new Date(start);
+    this.end = end ? new Date(end) : null;
     this.units = units;
     this.measure = measure;
   }
 
+  all() {
+    const res = [];
+    if (this.end === null) {
+      return res;
+    }
+    for (let j = 0; j < this.units.length; j++) {
+      const unit = this.units[j];
+      let testDate = this.start;
+      switch (this.measure) {
+        case 'days':
+          while (isBefore(testDate, this.end)) {
+            res.push(testDate);
+            testDate = addDays(testDate, unit);
+          }
+          if (isSameDay(testDate, this.end)) {
+            res.push(testDate);
+          }
+          break;
+        case 'weeks':
+          while (isBefore(testDate, this.end)) {
+            res.push(testDate);
+            testDate = addDays(testDate, unit * 7);
+          }
+          if (isSameDay(testDate, this.end)) {
+            res.push(testDate);
+          }
+          break;
+        case 'months':
+          while (isBefore(testDate, this.end)) {
+            res.push(testDate);
+            testDate = addMonths(testDate, unit);
+          }
+          if (isSameDay(testDate, this.end)) {
+            res.push(testDate);
+          }
+          break;
+        case 'years':
+          while (isBefore(testDate, this.end)) {
+            res.push(testDate);
+            testDate = addYears(testDate, unit);
+          }
+          if (isSameDay(testDate, this.end)) {
+            res.push(testDate);
+          }
+          break;
+        case 'daysOfWeek': {
+          const startDay = getDay(this.start);
+          if (unit > startDay) {
+            testDate = addDays(this.start, unit - startDay);
+          } else if (unit < startDay) {
+            testDate = addDays(this.start, 7 - startDay + unit);
+          }
+          while (isBefore(testDate, this.end)) {
+            res.push(testDate);
+            testDate = addDays(testDate, 7);
+          }
+          if (isSameDay(testDate, this.end)) {
+            res.push(testDate);
+          }
+          break;
+        }
+        case 'daysOfMonth': {
+          const startDay = getDate(this.start);
+          if (unit > startDay) {
+            testDate = addDays(this.start, unit - startDay);
+          } else if (unit < startDay) {
+            testDate = addMonths(subDays(this.start, startDay - unit), 1);
+          }
+          while (isBefore(testDate, this.end)) {
+            res.push(testDate);
+            testDate = addMonths(testDate, 1);
+          }
+          if (isSameDay(testDate, this.end)) {
+            res.push(testDate);
+          }
+          break;
+        }
+      }
+    }
+
+    if (this.units.length > 1) {
+      res.sort(compareAsc);
+    }
+
+    return Array.from(new Set(res.map(date => format(date, 'YYYY-MM-DD'))));
+  }
+
   next(times: number, options: Object = {}) {
-    // const startDate = options.startDate ? new Date(options.startDate) : this.start;
     const res = [];
     for (let i = 0; i <= times; i++) {
       for (let j = 0; j < this.units.length; j++) {
