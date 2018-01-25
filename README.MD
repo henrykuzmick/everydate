@@ -1,0 +1,165 @@
+# Everydate
+
+Everydate is a simple date recurrence tool.
+It allows you to calculate next days for a recurrence, 
+match dates for it and get all recurring days between a start and end date.
+
+## Getting started
+
+everydate can be installed with npm and required into a script.
+```
+import everydate from 'everydate'
+```
+
+## Example
+
+```
+const recur = everydate({
+  start: '2018-02-10',
+  end: '2018-02-17'
+  units: [2],
+  measure: 'days'
+});
+
+recur.next(3) // [2018-02-10, 2018-02-12, 2018-02-14]
+recur.match('2018-02-12') // true
+recur.match('2018-02-13') // false
+recur.all() // [2018-02-10, 2018-02-12, 2018-02-14, 2018-02-16]
+```
+
+## Usage
+
+Both input for start and end days use date string in the format of `YYYY-MM-DD`
+This helps dismissing time from the results, which is not handled by this module,
+and enforces the idea that you can then use whatever date library you want for other tasks.
+
+There is a date-fns dependency however, so you may as well use that, as it's awesome. ❤️
+
+## Creating an everydate object
+
+Creating a recurrence object requires a start date, an array of units and a measure type.
+
+```
+start: string, // form of 'YYYY-MM-DD'
+end: string, // optional
+units: Array<number>,
+measure: enum // days, weeks, months, years, daysOfWeek, daysOfMonth
+```
+
+For example, if you want a recurrence of every 3 days
+```
+const recur = everydate({
+  start: '2018-02-10',
+  units: [3],
+  measure: 'days'
+});
+```
+
+A recursion for every 2 AND 5 days
+```
+const recur = everydate({
+  start: '2018-02-10',
+  units: [2, 5],
+  measure: 'days'
+});
+```
+
+A recursion for every Tuesday
+```
+const recur = everydate({
+  start: '2018-02-10',
+  units: [2],
+  measure: 'daysOfWeek'
+});
+```
+
+A recursion for every Tuesday and Friday
+```
+const recur = everydate({
+  start: '2018-02-10',
+  units: [2, 5],
+  measure: 'daysOfWeek'
+});
+```
+
+A recursion for every 15th of the month
+```
+const recur = everydate({
+  start: '2018-02-10', // if start date is before first day of recurrence it will not be outputted in the results.
+  units: [15],
+  measure: 'daysOfMonth'
+});
+```
+
+## Getting next dates
+
+After creating the object you can get next days from it.
+This is the point of the module ¯\_(ツ)_/¯
+
+If an end date is provided `next()` will only give dates until the end date, 
+even if a larger number is provided.
+
+```
+const recur = everydate({
+  start: '2018-02-10',
+  end: '2018-02-17'
+  units: [2],
+  measure: 'days'
+});
+
+recur.next(3) // [2018-02-10, 2018-02-12, 2018-02-14]
+```
+
+## Getting all dates
+
+If both a start date and an end date are given, you can call `all()` to get all given.
+
+```
+const recur = everydate({
+  start: '2018-02-10',
+  end: '2018-02-17'
+  units: [2],
+  measure: 'days'
+});
+
+recur.all() // [2018-02-10, 2018-02-12, 2018-02-14, 2018-02-16]
+```
+
+## Matching dates
+
+You can check if a given date matches your everydate object using `match()`
+
+```
+const recur = everydate({
+  start: '2018-02-10',
+  end: '2018-02-17'
+  units: [2],
+  measure: 'days'
+});
+
+recur.match('2018-02-12') // true
+recur.match('2018-02-13') // false
+```
+
+## Getting and Setting values
+
+After creating an everydate object you can get and set all props
+
+```
+const recur = everydate({
+  start: '2018-02-10',
+  end: '2018-02-17'
+  units: [2],
+  measure: 'days'
+});
+
+recur.setStart('2018-02-12');
+recur.setEnd('2018-05-10');
+recur.setUnits([5]);
+recur.setMeasure('weeks');
+
+recur.getStart(); // '2018-02-12'
+recur.getEnd(); // '2018-05-10'
+recur.getUnits(); // [5]
+recur.getMeasure(); // 'weeks'
+```

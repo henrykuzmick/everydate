@@ -1,7 +1,7 @@
 {
   "name": "everydate",
   "version": "1.0.0",
-  "description": "",
+  "description": "A simple date recurrence tool",
   "main": "dist/everydate.js",
   "scripts": {
     "clean": "rimraf dist",
@@ -12,8 +12,25 @@
     "prettier": "prettier \"*/**/*.js\" --ignore-path ./.prettierignore --write",
     "prepublishOnly": "npm run build"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Henrikas Kuzmickas <henry.kuzmick@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/henrykuzmick/everydate.git"
+  },
+  "keywords": [
+    "everydate",
+    "date",
+    "dates",
+    "recur",
+    "recurrence",
+    "date-fns",
+    "moment",
+    "everyday",
+    "match",
+    "schedule",
+    "calendar"
+  ],
+  "license": "MIT",
   "dependencies": {
     "date-fns": "^1.29.0"
   },
