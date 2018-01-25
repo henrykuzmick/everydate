@@ -7,13 +7,13 @@ match dates for it and get all recurring days between a start and end date.
 ## Getting started
 
 everydate can be installed with npm and required into a script.
-```
+```js
 import everydate from 'everydate'
 ```
 
 ## Example
 
-```
+```js
 const recur = everydate({
   start: '2018-02-10',
   end: '2018-02-17'
@@ -39,7 +39,7 @@ There is a date-fns dependency however, so you may as well use that, as it's awe
 
 Creating a recurrence object requires a start date, an array of units and a measure type.
 
-```
+```js
 start: string, // form of 'YYYY-MM-DD'
 end: string, // optional
 units: Array<number>,
@@ -47,7 +47,7 @@ measure: enum // days, weeks, months, years, daysOfWeek, daysOfMonth
 ```
 
 For example, if you want a recurrence of every 3 days
-```
+```js
 const recur = everydate({
   start: '2018-02-10',
   units: [3],
@@ -56,7 +56,7 @@ const recur = everydate({
 ```
 
 A recursion for every 2 AND 5 days
-```
+```js
 const recur = everydate({
   start: '2018-02-10',
   units: [2, 5],
@@ -65,7 +65,7 @@ const recur = everydate({
 ```
 
 A recursion for every Tuesday
-```
+```js
 const recur = everydate({
   start: '2018-02-10',
   units: [2],
@@ -74,7 +74,7 @@ const recur = everydate({
 ```
 
 A recursion for every Tuesday and Friday
-```
+```js
 const recur = everydate({
   start: '2018-02-10',
   units: [2, 5],
@@ -83,7 +83,7 @@ const recur = everydate({
 ```
 
 A recursion for every 15th of the month
-```
+```js
 const recur = everydate({
   start: '2018-02-10', // if start date is before first day of recurrence it will not be outputted in the results.
   units: [15],
@@ -99,7 +99,7 @@ This is the point of the module ¯\_(ツ)_/¯
 If an end date is provided `next()` will only give dates until the end date, 
 even if a larger number is provided.
 
-```
+```js
 const recur = everydate({
   start: '2018-02-10',
   end: '2018-02-17'
@@ -114,7 +114,7 @@ recur.next(3) // [2018-02-10, 2018-02-12, 2018-02-14]
 
 If both a start date and an end date are given, you can call `all()` to get all given.
 
-```
+```js
 const recur = everydate({
   start: '2018-02-10',
   end: '2018-02-17'
@@ -129,7 +129,7 @@ recur.all() // [2018-02-10, 2018-02-12, 2018-02-14, 2018-02-16]
 
 You can check if a given date matches your everydate object using `match()`
 
-```
+```js
 const recur = everydate({
   start: '2018-02-10',
   end: '2018-02-17'
@@ -145,7 +145,7 @@ recur.match('2018-02-13') // false
 
 After creating an everydate object you can get and set all props
 
-```
+```js
 const recur = everydate({
   start: '2018-02-10',
   end: '2018-02-17'
