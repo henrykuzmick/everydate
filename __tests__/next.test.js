@@ -285,3 +285,22 @@ describe('getting next days of month', () => {
     expect(recur.next(5)).toEqual(expected);
   });
 });
+
+describe('next options', () => {
+  it('should not give results when they pass end', () => {
+    const recur = everydate({
+      start: '2018-02-10',
+      end: '2018-02-13',
+      units: [1],
+      measure: 'days'
+    });
+    const expected = [
+      '2018-02-10',
+      '2018-02-11',
+      '2018-02-12',
+      '2018-02-13',
+
+    ];
+    expect(recur.next(8)).toEqual(expected);
+  })
+})

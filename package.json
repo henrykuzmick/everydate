@@ -2,13 +2,15 @@
   "name": "everydate",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/everydate.js",
   "scripts": {
-    "build": "webpack",
+    "clean": "rimraf dist",
+    "build": "npm run test && npm run clean && webpack",
     "test": "jest",
     "test:watch": "jest --watch",
     "flow": "flow",
-    "prettier": "prettier \"*/**/*.js\" --ignore-path ./.prettierignore --write"
+    "prettier": "prettier \"*/**/*.js\" --ignore-path ./.prettierignore --write",
+    "prepublishOnly": "npm run build"
   },
   "author": "",
   "license": "ISC",
@@ -33,6 +35,7 @@
     "flow-bin": "^0.63.1",
     "jest": "^22.1.4",
     "prettier": "^1.10.2",
+    "rimraf": "^2.6.2",
     "uglifyjs-webpack-plugin": "^1.1.6",
     "webpack": "^3.10.0"
   },

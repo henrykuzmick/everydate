@@ -11,6 +11,7 @@ import getDay from 'date-fns/get_day';
 import getDate from 'date-fns/get_date';
 import getMonth from 'date-fns/get_month';
 import isBefore from 'date-fns/is_before';
+import isAfter from 'date-fns/is_after';
 import differenceInDays from 'date-fns/difference_in_days';
 import differenceInMonths from 'date-fns/difference_in_months';
 import differenceInYears from 'date-fns/difference_in_years';
@@ -37,6 +38,38 @@ const everydate = ({ start, end, units, measure }: Props) => ({
   end: end ? new Date(end) : null,
   units: units,
   measure: measure,
+
+  getStart() {
+    return format(this.start, 'YYYY-MM-DD');
+  },
+
+  getEnd() {
+    return format(this.end, 'YYYY-MM-DD');
+  },
+
+  getUnits() {
+    return this.units;
+  },
+
+  getMeasure() {
+    return this.measure;
+  },
+
+  setStart(start: string) {
+    this.start = new Date(start);
+  },
+
+  setEnd(end: string) {
+    this.end = end ? new Date(end) : null;
+  },
+
+  setUnits(units: Array<number>) {
+    this.units = units;
+  },
+
+  setMeasure(measure: MeasureType) {
+    this.measure = measure;
+  },
 
   all() {
     const res = [];
@@ -126,7 +159,7 @@ const everydate = ({ start, end, units, measure }: Props) => ({
   },
 
   next(times: number, options: Object = {}) {
-    const res = [];
+    let res = [];
     for (let i = 0; i <= times; i++) {
       for (let j = 0; j < this.units.length; j++) {
         const unit = this.units[j];
@@ -176,6 +209,10 @@ const everydate = ({ start, end, units, measure }: Props) => ({
       res.sort(compareAsc);
     }
 
+    if (this.end !== null) {
+      res = res.filter(date => !isAfter(date, this.end))
+    }
+
     return Array.from(
       new Set(res.map(date => format(date, 'YYYY-MM-DD')))
     ).slice(0, times);
@@ -185,6 +222,12 @@ const everydate = ({ start, end, units, measure }: Props) => ({
     const testDate = new Date(date);
     if (isBefore(testDate, this.start)) {
       return false;
+    }
+
+    if (this.end !== null) {
+      if (isAfter(testDate, this.end)) {
+        return false;
+      }
     }
 
     const diffInDays = differenceInDays(this.start, testDate);

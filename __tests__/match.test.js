@@ -126,3 +126,15 @@ describe('matching daysOfMonth', () => {
     expect(recur.match('2018-03-14')).toEqual(false);
   });
 });
+
+describe('matching options', () => {
+  it('should not match if after end', () => {
+    const recur = everydate({
+      start: '2018-02-10',
+      end: '2018-02-15',
+      units: [1],
+      measure: 'days'
+    });
+    expect(recur.match('2018-02-16')).toEqual(false);
+  })
+})
