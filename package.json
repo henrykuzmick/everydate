@@ -1,8 +1,8 @@
 {
   "name": "everydate",
-  "version": "1.0.0",
+  "version": "1.0.4",
   "description": "A simple date recurrence tool",
-  "main": "dist/everydate.js",
+  "main": "src/index.js",
   "scripts": {
     "clean": "rimraf dist",
     "build": "npm run test && npm run clean && webpack",
@@ -32,14 +32,15 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "date-fns": "^1.29.0"
+    "date-fns": "^1.29.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-flow": "^6.23.0"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.2.1",
     "babel-loader": "^7.1.2",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-flow": "^6.23.0",
     "eslint": "^4.16.0",
     "eslint-config-prettier": "^2.9.0",
     "eslint-config-standard": "^11.0.0-beta.0",
