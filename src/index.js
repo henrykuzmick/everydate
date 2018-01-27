@@ -1,38 +1,21 @@
-// @flow
+const addDays = require('date-fns/add_days');
+const subDays = require('date-fns/sub_days');
+const addWeeks = require('date-fns/add_weeks');
+const addMonths = require('date-fns/add_months');
+const addYears = require('date-fns/add_years');
+const compareAsc = require('date-fns/compare_asc');
+const format = require('date-fns/format');
+const getDay = require('date-fns/get_day');
+const getDate = require('date-fns/get_date');
+const getMonth = require('date-fns/get_month');
+const isBefore = require('date-fns/is_before');
+const isAfter = require('date-fns/is_after');
+const differenceInDays = require('date-fns/difference_in_days');
+const differenceInMonths = require('date-fns/difference_in_months');
+const differenceInYears = require('date-fns/difference_in_years');
+const isSameDay = require('date-fns/is_same_day');
 
-import addDays from 'date-fns/add_days';
-import subDays from 'date-fns/sub_days';
-import addWeeks from 'date-fns/add_weeks';
-import addMonths from 'date-fns/add_months';
-import addYears from 'date-fns/add_years';
-import compareAsc from 'date-fns/compare_asc';
-import format from 'date-fns/format';
-import getDay from 'date-fns/get_day';
-import getDate from 'date-fns/get_date';
-import getMonth from 'date-fns/get_month';
-import isBefore from 'date-fns/is_before';
-import isAfter from 'date-fns/is_after';
-import differenceInDays from 'date-fns/difference_in_days';
-import differenceInMonths from 'date-fns/difference_in_months';
-import differenceInYears from 'date-fns/difference_in_years';
-import isSameDay from 'date-fns/is_same_day';
-
-type MeasureType =
-  | 'days'
-  | 'weeks'
-  | 'months'
-  | 'years'
-  | 'daysOfWeek'
-  | 'daysOfMonth';
-
-type Props = {
-  start: string,
-  end: ?string,
-  units: Array<number>,
-  measure: MeasureType
-};
-
-const everydate = ({ start, end, units, measure }: Props) => ({
+const everydate = ({ start, end, units, measure }) => ({
 
   start: new Date(start),
   end: end ? new Date(end) : null,
@@ -55,19 +38,19 @@ const everydate = ({ start, end, units, measure }: Props) => ({
     return this.measure;
   },
 
-  setStart(start: string) {
+  setStart(start) {
     this.start = new Date(start);
   },
 
-  setEnd(end: string) {
+  setEnd(end) {
     this.end = end ? new Date(end) : null;
   },
 
-  setUnits(units: Array<number>) {
+  setUnits(units) {
     this.units = units;
   },
 
-  setMeasure(measure: MeasureType) {
+  setMeasure(measure) {
     this.measure = measure;
   },
 
@@ -158,7 +141,7 @@ const everydate = ({ start, end, units, measure }: Props) => ({
     return Array.from(new Set(res.map(date => format(date, 'YYYY-MM-DD'))));
   },
 
-  next(times: number, options: Object = {}) {
+  next(times, options = {}) {
     let res = [];
     for (let i = 0; i <= times; i++) {
       for (let j = 0; j < this.units.length; j++) {
@@ -218,7 +201,7 @@ const everydate = ({ start, end, units, measure }: Props) => ({
     ).slice(0, times);
   },
 
-  match(date: string) {
+  match(date) {
     const testDate = new Date(date);
     if (isBefore(testDate, this.start)) {
       return false;
@@ -279,4 +262,4 @@ const everydate = ({ start, end, units, measure }: Props) => ({
   }
 });
 
-export default everydate;
+module.exports = everydate;
