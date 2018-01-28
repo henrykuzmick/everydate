@@ -1,5 +1,8 @@
 # Everydate
 
+[![Build Status](https://circleci.com/gh/henrykuzmick/everydate.svg?&style=shield&circle-token=b2e9c2446fa622e504f2dd8ae9bd805ab8954384)](https://circleci.com/gh/henrykuzmick/everydate)
+[![npm version](https://badge.fury.io/js/everydate.svg)](https://badge.fury.io/js/everydate)
+
 Everydate is a simple date recurrence tool.
 It allows you to calculate next days for a recurrence, 
 match dates for it and get all recurring days between a start and end date.
