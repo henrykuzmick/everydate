@@ -2,10 +2,10 @@
   "name": "everydate",
   "version": "1.1.1",
   "description": "A simple date recurrence tool",
-  "main": "src/index.js",
+  "main": "dist/index.js",
   "scripts": {
     "clean": "rimraf dist",
-    "build": "npm run test && npm run clean && webpack",
+    "build": "npm run test && npm run clean && babel src --presets babel-preset-flow,babel-preset-env --out-dir dist",
     "test": "jest",
     "test:watch": "jest --watch",
     "flow": "flow",
@@ -32,8 +32,7 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "date-fns": "^1.29.0",
-    "babel-preset-env": "^1.6.1"
+    "date-fns": "^1.29.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -53,8 +52,7 @@
     "jest": "^22.1.4",
     "prettier": "^1.10.2",
     "rimraf": "^2.6.2",
-    "uglifyjs-webpack-plugin": "^1.1.6",
-    "webpack": "^3.10.0"
+    "babel-preset-env": "^1.6.1"
   },
   "jest": {
     "testEnvironment": "node",
