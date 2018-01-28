@@ -15,12 +15,13 @@ const differenceInMonths = require('date-fns/difference_in_months');
 const differenceInYears = require('date-fns/difference_in_years');
 const isSameDay = require('date-fns/is_same_day');
 
-const everydate = ({ start, end, units, measure }) => ({
+const everydate = ({ start, end, units, measure, returnDates }) => ({
 
   start: new Date(start),
   end: end ? new Date(end) : null,
   units: units,
   measure: measure,
+  returnDates: returnDates || false,
 
   getStart() {
     return format(this.start, 'YYYY-MM-DD');
@@ -138,6 +139,10 @@ const everydate = ({ start, end, units, measure }) => ({
       res.sort(compareAsc);
     }
 
+    if (returnDates) {
+      return Array.from(new Set(res));
+    }
+
     return Array.from(new Set(res.map(date => format(date, 'YYYY-MM-DD'))));
   },
 
@@ -194,6 +199,10 @@ const everydate = ({ start, end, units, measure }) => ({
 
     if (this.end !== null) {
       res = res.filter(date => !isAfter(date, this.end))
+    }
+
+    if (returnDates) {
+      return Array.from(new Set(res)).slice(0, times);
     }
 
     return Array.from(

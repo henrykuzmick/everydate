@@ -40,10 +40,11 @@ There is a date-fns dependency however, so you may as well use that, as it's awe
 Creating a recurrence object requires a start date, an array of units and a measure type.
 
 ```js
-start: string, // form of 'YYYY-MM-DD'
-end: string, // optional
+start: string | Date,
+end: string | Date, // optional
 units: Array<number>,
 measure: enum // days, weeks, months, years, daysOfWeek, daysOfMonth
+returnDates: boolean // return an array of Dates instead of strings. Default false.
 ```
 
 For example, if you want a recurrence of every 3 days
@@ -163,3 +164,23 @@ recur.getEnd(); // '2018-05-10'
 recur.getUnits(); // [5]
 recur.getMeasure(); // 'weeks'
 ```
+
+## Options
+
+If you prefer to get an array of Dates instead of strings you can set `returnDates` to `true`.
+Keep in mind that dates have time information which this package ignores, 
+but in some cases you may get unexpected results, for example if a recursion passes daylight savings dates you would get the correct date, but your time values would shift by an hour.
+
+```js
+const recur = everydate({
+  start: '2018-02-10',
+  end: '2018-02-17'
+  units: [2],
+  measure: 'days',
+  returnDates: true
+});
+```
+
+## Licence
+
+MIT
