@@ -300,7 +300,13 @@ const everydate = (props: Props) => ({
       }
     }
     return false;
+  },
+
+  toWords() {
+    if(!this.isRecurring()) {
+      return format('')
+    }
   }
 });
 
-module.exports = everydate;
+export default everydate;

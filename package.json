@@ -5,7 +5,9 @@
   "main": "dist/index.js",
   "scripts": {
     "clean": "rimraf dist",
-    "build": "npm run test && npm run clean && babel src --presets babel-preset-flow,babel-preset-env --out-dir dist",
+    "prebuild": "npm run test && npm run clean",
+    "build": "babel src --presets babel-preset-flow,babel-preset-env --out-dir dist",
+    "postbuild": "uglifyjs dist/index.js -c --output dist/index.min.js",
     "test": "jest",
     "test:watch": "jest --watch",
     "flow": "flow",
@@ -53,7 +55,8 @@
     "flow-bin": "^0.63.1",
     "jest": "^22.1.4",
     "prettier": "^1.10.2",
-    "rimraf": "^2.6.2"
+    "rimraf": "^2.6.2",
+    "uglify-js": "^3.3.9"
   },
   "jest": {
     "testEnvironment": "node",
