@@ -10,17 +10,27 @@ describe('getters', () => {
 
   it('should get start', () => {
     expect(recur.getStart()).toEqual('2018-02-10');
-  })
+  });
 
   it('should get end', () => {
     expect(recur.getEnd()).toEqual('2018-02-20');
-  })
+  });
 
   it('should get units', () => {
     expect(recur.getUnits()).toEqual([1]);
-  })
+  });
 
   it('should get days', () => {
     expect(recur.getMeasure()).toEqual('days');
-  })
-})
+  });
+
+  it('should know if recur options are passed', () => {
+    const noUnits = everydate({
+      start: '2018-02-10',
+      end: '2018-02-20',
+      measure: 'days'
+    });
+    expect(recur.isRecurring()).toEqual(true);
+    expect(noUnits.isRecurring()).toEqual(false);
+  });
+});

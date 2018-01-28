@@ -209,4 +209,24 @@ describe('getting all daysOfMonth', () => {
     ];
     expect(recur.all()).toEqual(expected);
   });
+
+  it('should only return start if no end is given', () => {
+    const recur = everydate({
+      start: '2018-02-11',
+      units: [10],
+      measure: 'daysOfMonth'
+    });
+    const expected = ['2018-02-11'];
+    expect(recur.all()).toEqual(expected);
+  });
+
+  it('should return start and end if is not recurring', () => {
+    const recur = everydate({
+      start: '2018-02-11',
+      end: '2018-02-15',
+      measure: 'daysOfMonth'
+    });
+    const expected = ['2018-02-11', '2018-02-15'];
+    expect(recur.all()).toEqual(expected);
+  });
 });

@@ -40,11 +40,11 @@ There is a date-fns dependency however, so you may as well use that, as it's awe
 Creating a recurrence object requires a start date, an array of units and a measure type.
 
 ```js
-start: string | Date,
-end: string | Date, // optional
-units: Array<number>,
-measure: enum // days, weeks, months, years, daysOfWeek, daysOfMonth
-returnDates: boolean // return an array of Dates instead of strings. Default false.
+start: string | Date, // default new Date()
+end: string | Date, // default null
+units: Array<number>, // default []
+measure: enum // days, weeks, months, years, daysOfWeek, daysOfMonth, default null
+returnDates: boolean // return an array of Dates instead of strings, default false.
 ```
 
 For example, if you want a recurrence of every 3 days

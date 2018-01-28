@@ -134,7 +134,7 @@ describe('getting next months', () => {
       '2018-06-30'
     ];
     expect(recur.next(6)).toEqual(expected);
-  })
+  });
 });
 
 describe('getting next years', () => {
@@ -294,13 +294,15 @@ describe('next options', () => {
       units: [1],
       measure: 'days'
     });
-    const expected = [
-      '2018-02-10',
-      '2018-02-11',
-      '2018-02-12',
-      '2018-02-13',
-
-    ];
+    const expected = ['2018-02-10', '2018-02-11', '2018-02-12', '2018-02-13'];
     expect(recur.next(8)).toEqual(expected);
-  })
-})
+  });
+
+  it('should only give start date if not recurring', () => {
+    const recur = everydate({
+      start: '2018-02-10'
+    });
+    const expected = ['2018-02-10'];
+    expect(recur.next(8)).toEqual(expected);
+  });
+});

@@ -136,5 +136,14 @@ describe('matching options', () => {
       measure: 'days'
     });
     expect(recur.match('2018-02-16')).toEqual(false);
-  })
-})
+  });
+
+  it('should only match start or end dates if not recurring', () => {
+    const recur = everydate({
+      start: '2018-02-10',
+      end: '2018-02-15'
+    });
+    expect(recur.match('2018-02-10')).toEqual(true);
+    expect(recur.match('2018-02-15')).toEqual(true);
+  });
+});
