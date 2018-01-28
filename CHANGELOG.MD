@@ -1,3 +1,5 @@
+# 1.1.0 (2018-01-28)
+  - Add `returnDates` option
 # 1.0.5 (2018-01-27)
   - Remove flow, refactor to CommonJS modules
 # 1.0.4 (2018-01-25)
