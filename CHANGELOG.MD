@@ -1,3 +1,8 @@
+# 1.1.2 (2018-01-28)
+  - Remove Webpack
+  - Build using babel
+  - Add back flow
+  - Add back es6 imports
 # 1.1.1 (2018-01-28)
   - Add default values
   - Allow for non-recurring dates
