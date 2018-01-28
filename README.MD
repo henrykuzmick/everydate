@@ -25,6 +25,7 @@ recur.next(3) // [2018-02-10, 2018-02-12, 2018-02-14]
 recur.match('2018-02-12') // true
 recur.match('2018-02-13') // false
 recur.all() // [2018-02-10, 2018-02-12, 2018-02-14, 2018-02-16]
+recur.isRecurring() // true
 ```
 
 ## Usage
@@ -163,6 +164,18 @@ recur.getStart(); // '2018-02-12'
 recur.getEnd(); // '2018-05-10'
 recur.getUnits(); // [5]
 recur.getMeasure(); // 'weeks'
+```
+
+## Helper functions
+
+You can check if the everydate object is recurring, i.e. it has a measure and a filled array of units.
+
+```js
+const recur = everydate({
+  start: '2018-02-10',
+  end: '2018-02-17'
+});
+recur.isRecurring() // false
 ```
 
 ## Options
