@@ -39,6 +39,8 @@
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.2.1",
     "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-flow": "^6.23.0",
     "eslint": "^4.16.0",
     "eslint-config-prettier": "^2.9.0",
     "eslint-config-standard": "^11.0.0-beta.0",
@@ -51,8 +53,7 @@
     "flow-bin": "^0.63.1",
     "jest": "^22.1.4",
     "prettier": "^1.10.2",
-    "rimraf": "^2.6.2",
-    "babel-preset-env": "^1.6.1"
+    "rimraf": "^2.6.2"
   },
   "jest": {
     "testEnvironment": "node",
