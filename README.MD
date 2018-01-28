@@ -19,7 +19,7 @@ import everydate from 'everydate'
 ```js
 const recur = everydate({
   start: '2018-02-10',
-  end: '2018-02-17'
+  end: '2018-02-17',
   units: [2],
   measure: 'days'
 });
@@ -107,7 +107,7 @@ even if a larger number is provided.
 ```js
 const recur = everydate({
   start: '2018-02-10',
-  end: '2018-02-17'
+  end: '2018-02-17',
   units: [2],
   measure: 'days'
 });
@@ -122,7 +122,7 @@ If both a start date and an end date are given, you can call `all()` to get all 
 ```js
 const recur = everydate({
   start: '2018-02-10',
-  end: '2018-02-17'
+  end: '2018-02-17',
   units: [2],
   measure: 'days'
 });
@@ -137,7 +137,7 @@ You can check if a given date matches your everydate object using `match()`
 ```js
 const recur = everydate({
   start: '2018-02-10',
-  end: '2018-02-17'
+  end: '2018-02-17',
   units: [2],
   measure: 'days'
 });
@@ -153,7 +153,7 @@ After creating an everydate object you can get and set all props
 ```js
 const recur = everydate({
   start: '2018-02-10',
-  end: '2018-02-17'
+  end: '2018-02-17',
   units: [2],
   measure: 'days'
 });
@@ -190,7 +190,7 @@ but in some cases you may get unexpected results, for example if a recursion pas
 ```js
 const recur = everydate({
   start: '2018-02-10',
-  end: '2018-02-17'
+  end: '2018-02-17',
   units: [2],
   measure: 'days',
   returnDates: true
