@@ -1,18 +1,18 @@
-# 1.1.2 (2018-01-28)
+## 1.1.2 (2018-01-28)
   - Remove Webpack
   - Build using babel
   - Add back flow
   - Add back es6 imports
-# 1.1.1 (2018-01-28)
+## 1.1.1 (2018-01-28)
   - Add default values
   - Allow for non-recurring dates
-# 1.1.0 (2018-01-28)
+## 1.1.0 (2018-01-28)
   - Add `returnDates` option
-# 1.0.5 (2018-01-27)
+## 1.0.5 (2018-01-27)
   - Remove flow, refactor to CommonJS modules
-# 1.0.4 (2018-01-25)
+## 1.0.4 (2018-01-25)
   - Tweak and publish a few times until it started to work on npm
-# 1.0.0 (2018-01-25)
+## 1.0.0 (2018-01-25)
   - Initial release
   - Allows to get next dates from start date
   - Allows getting all dates between start and end dates
