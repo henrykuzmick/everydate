@@ -229,4 +229,78 @@ describe('getting all daysOfMonth', () => {
     const expected = ['2018-02-11', '2018-02-15'];
     expect(recur.all()).toEqual(expected);
   });
+
+  it('should return all dates with from and to options', () => {
+    const recur = everydate({
+      start: '2018-06-01',
+      end: '2019-06-01',
+      measure: 'days',
+      units: [1]
+    });
+    const expected = ['2018-07-01', '2018-07-02', '2018-07-03'];
+    expect(recur.all({ from: '2018-07-01', to: '2018-07-03' })).toEqual(expected);
+  });
+
+  it('should return all dates, when to is set, but recur has no end', () => {
+    const recur = everydate({
+      start: '2018-06-01',
+      measure: 'days',
+      units: [1]
+    });
+    const expected = ['2018-07-01', '2018-07-02', '2018-07-03'];
+    expect(recur.all({ from: '2018-07-01', to: '2018-07-03' })).toEqual(expected);
+  });
+
+  it('should cap at end if to > end', () => {
+    const recur = everydate({
+      start: '2018-06-01',
+      end: '2018-06-05',
+      measure: 'days',
+      units: [1]
+    });
+    const expected = ['2018-06-03', '2018-06-04', '2018-06-05'];
+    expect(recur.all({ from: '2018-06-03', to: '2018-07-03' })).toEqual(expected);
+  });
+
+  it('moves dates according to moves object', () => {
+    const recur = everydate({
+      start: '2018-06-01',
+      end: '2018-06-05',
+      measure: 'days',
+      units: [2],
+      moves: [
+        { from: '2018-06-03', to: '2018-06-04' }
+      ]
+    });
+    const expected = ['2018-06-01', '2018-06-04', '2018-06-05'];
+    expect(recur.all()).toEqual(expected);
+  });
+
+  it('ignores moves where from is not in the result', () => {
+    const recur = everydate({
+      start: '2018-06-01',
+      end: '2018-06-05',
+      measure: 'days',
+      units: [2],
+      moves: [
+        { from: '2018-06-02', to: '2018-06-04' }
+      ]
+    });
+    const expected = ['2018-06-01', '2018-06-03', '2018-06-05'];
+    expect(recur.all()).toEqual(expected);
+  });
+
+  it('does not duplicate dates when moves exist', () => {
+    const recur = everydate({
+      start: '2018-06-01',
+      end: '2018-06-05',
+      measure: 'days',
+      units: [2],
+      moves: [
+        { from: '2018-06-03', to: '2018-06-05' }
+      ]
+    });
+    const expected = ['2018-06-01', '2018-06-05'];
+    expect(recur.all()).toEqual(expected);
+  })
 });
