@@ -1,4 +1,4 @@
-# Everydate
+# Everydate (NOT MAINTAINED ANYMORE, PLEASE USE RRULE INSTEAD)
 
 [![Build Status](https://circleci.com/gh/henrykuzmick/everydate.svg?&style=shield&circle-token=b2e9c2446fa622e504f2dd8ae9bd805ab8954384)](https://circleci.com/gh/henrykuzmick/everydate)
 [![npm version](https://badge.fury.io/js/everydate.svg)](https://badge.fury.io/js/everydate)
